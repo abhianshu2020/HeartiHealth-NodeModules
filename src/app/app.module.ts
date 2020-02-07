@@ -27,13 +27,11 @@ import {
 } from '@nebular/theme';
 import { PLoginComponent } from './auth/p-login/p-login.component';
 import { PRegisterComponent } from './auth/p-register/p-register.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, PLoginComponent, PRegisterComponent],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

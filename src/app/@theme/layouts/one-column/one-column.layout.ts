@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'ngx-one-column-layout',
   styleUrls: ['./one-column.layout.scss'],
+  // TODO: Add background color to the header
   template: `
     <nb-layout windowMode>
       <nb-layout-header fixed>
-        <ngx-header ></ngx-header>
+        <ngx-header></ngx-header>
       </nb-layout-header>
 
       <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>

@@ -5,8 +5,6 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { AuthServiceService } from '../../../services/auth/auth-service.service';
 
 @Component({
   selector: 'ngx-header',
@@ -40,16 +38,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }];
+  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService,
-              private authService: AuthServiceService,
-              ) {
+              private breakpointService: NbMediaBreakpointsService) {
   }
 
   ngOnInit() {
@@ -95,12 +91,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.menuService.navigateHome();
     return false;
   }
-
-  logout(){
-    this.authService.logout();
-        //this.toastrService.show('Please enter correct username or password', 'Error!', { status: 'danger' });
-      
-    
-  }
-
 }

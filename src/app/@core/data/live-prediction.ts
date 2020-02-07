@@ -2,8 +2,7 @@ import { symptomPrediction } from './symptomPrediction';
 
 export class LivePrediction {
   symptomType: string;
-  todayPredictionSymptomValue: number;
-  variation: number;
+  todayPredictionsymptomValue: number;
   up: boolean;
   symptomPrediction :symptomPrediction[];
   }

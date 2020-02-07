@@ -4,8 +4,5 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 export const environment = {
-  production: false,
-  livePredictionUrl :'http://172.30.12.171:8083/api/livePredictions/',
-  heartiAttackCounterUrl : 'http://172.30.12.171:8083/intervalReport/weeklyreport/', 
+  production: true,
 };
-

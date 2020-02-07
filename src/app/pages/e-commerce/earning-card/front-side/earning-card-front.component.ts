@@ -6,7 +6,6 @@ import { LiveUpdateChart, EarningData } from '../../../../@core/data/earning';
 import { LivePrediction } from '../../../../@core/data/live-prediction';
 import { symptomPrediction } from '../../../../@core/data/symptomPrediction';
 import { SymptomPredictonMapper } from '../../../../@core/data/symptomPredictionMapper';
-import { EarningService } from '../../../../@core/mock/earning.service';
 
 @Component({
   selector: 'ngx-earning-card-front',
@@ -16,21 +15,22 @@ import { EarningService } from '../../../../@core/mock/earning.service';
 export class EarningCardFrontComponent implements OnDestroy, OnInit {
   private alive = true;
 
-  @Input() selectedCurrency: string = 'Chest Pain';
+  @Input() selectedCurrency: string = 'ChestPain';
 
   intervalSubscription: Subscription;
-  currencies: string[] = ['Chest Pain', 'Blood Pressure', 'Cholesterol'];
+  currencies: string[] = ['ChestPain', 'BloodSugar', 'Cholesterol'];
   currentTheme: string;
   predictionLiveUpdateCardData : LivePrediction;
+ // earningLiveUpdateCardData: LiveUpdateChart;
+  //liveUpdateChartData: { value: [string, number] }[];
   liveUpdateChartData : SymptomPredictonMapper[] =[];
  
-
+  //liveUpdateChartData : symptomPrediction[];
   
 
 
   constructor(private themeService: NbThemeService,
-              private earningService: EarningData,
-              private earningDataService : EarningService) {
+              private earningService: EarningData) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
@@ -45,22 +45,31 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
   changeCurrency(currency) {
     if (this.selectedCurrency !== currency) {
       this.selectedCurrency = currency;
-     this. getEarningCardData(currency);  
+
+      this.getEarningCardData(this.selectedCurrency);
     }
   }
 
 
   private getEarningCardData(currency) {
-
-       this.earningDataService.GetLiveRecords()
+    this.earningService.getEarningCardData(currency)
       .pipe(takeWhile(() => this.alive))
-      .subscribe((res) => {
-        this.predictionLiveUpdateCardData = res.filter((value) => value.symptomType.toLowerCase().includes(currency.toLowerCase()))[0];
-      this.mapSymptomPredictionMapper(this.predictionLiveUpdateCardData.symptomPrediction);
+      .subscribe((predictionLiveUpdateCardData: LivePrediction ) => {
+        this.predictionLiveUpdateCardData = predictionLiveUpdateCardData;
+      this.mapSymptomPredictionMapper(predictionLiveUpdateCardData.symptomPrediction);
+      //  for(let i=0;i<this.earningLiveUpdateCardData.symptomPrediction.length;i++)
+      //  {        
+      //     this.liveUpdateChartData[i].symptomPredictons[0]=this.earningLiveUpdateCardData.symptomPrediction[i].timeStamp;
+      //     this.liveUpdateChartData[i].symptomPredictons[1]=this.earningLiveUpdateCardData.symptomPrediction[i].symptomValue;
+       
+      //   }
+
+       
      
-      
+       // this.liveUpdateChartData = earningLiveUpdateCardData.symptomPrediction;
+
+       // this.startReceivingLiveData(currency);
       });
- 
   }
 
    private mapSymptomPredictionMapper(symptomPredictions :symptomPrediction[])
@@ -73,6 +82,16 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
     }
   
   }
+  // private getEarningCardData(currency) {
+  //   this.earningService.getEarningCardData(currency)
+  //     .pipe(takeWhile(() => this.alive))
+  //     .subscribe((earningLiveUpdateCardData: LiveUpdateChart) => {
+  //       this.earningLiveUpdateCardData = earningLiveUpdateCardData;
+  //       this.liveUpdateChartData = earningLiveUpdateCardData.liveChart;
+
+  //       this.startReceivingLiveData(currency);
+  //     });
+  // }
 
   startReceivingLiveData(currency) {
     if (this.intervalSubscription) {

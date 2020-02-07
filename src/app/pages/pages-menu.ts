@@ -12,6 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'heart-outline',
     link: '/pages/health-predictor',
   },
+  {
+    title: 'Settings',
+    icon: 'settings-2-outline',
+    link: '/pages/iot-dashboard',
+  },
   // {
   //   title: 'Settings',
   //   icon: 'settings-2-outline',
