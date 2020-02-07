@@ -13,8 +13,8 @@ export class HealthPredictorService {
   constructor(private httpClient: HttpClient) { }
 
   getHeartPredictorResult(data) {
-    return of({Result: 1, Status: 200});
-    //return this.httpClient.post('http://15.206.14.87:5000/predict', data);
+    return of({Result: 0, Status: 200});
+    //return this.httpClient.post('http://13.235.15.92:5000//predict', data);
   }
 
 }

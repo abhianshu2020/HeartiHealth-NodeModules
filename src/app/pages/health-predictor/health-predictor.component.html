@@ -6,12 +6,16 @@
   .block-label + nb-radio-group > nb-radio {
     display: inline;
   }
+
+  .calc-btn{
+    background-color: green;
+  }
 </style>
 
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
   <nb-card>
     <nb-card-header>
-      <div>
+      <div >
         <div>
           <h2 style="color:#5781ff;">Heart Attack Predictor</h2>
         </div>
@@ -24,9 +28,20 @@
         <div class="col-lg-3">
           <div class="form-group">
             <label for="age" class="label">
+<<<<<<< HEAD
               Age              
             </label>
             <input type="text" nbInput fullWidth placeholder="Eg: 32" formControlName="age">
+=======
+              Age 
+              <span class="badge badge-pill badge-secondary" 
+              nbTooltip="Age is just a number" nbTooltipStatus="primary" 
+              nbButton status="primary">i</span>             
+            </label>
+            <!-- TODO: Add a tootip for Age  -->
+            <!-- TODO: Make age a number field -->
+            <input type="number" nbInput fullWidth placeholder="Eg: 32" formControlName="age">
+>>>>>>> 8e85377947a4a5bcd032c81273f0bc40e7a34124
             <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
               <div *ngIf="f.age.errors.required">Age is required</div>
             </div>
@@ -57,7 +72,9 @@
           <div class="form-group">
             <label for="trestbps" class="label">
               Blood Pressure Level
-              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+<!-- TODO: Add Tooltip for the Blood Pressure -->
+
+             
             </label>
             <input type="text" nbInput fullWidth placeholder="Eg: 120" formControlName="trestbps">
           </div>
@@ -157,7 +174,8 @@
           <div class="form-group">
             <label for="thal" class="label">
               Thalassemia Level
-              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+              <!-- TODO: Add Tooltip for the Thalassemia Level -->
+              
             </label>
             <input type="text" nbInput fullWidth placeholder="3=normal 6=fixed defect 7=reversible defect"
               formControlName="thal">
@@ -167,12 +185,14 @@
 
     </nb-card-body>
     <nb-card-footer>
+<<<<<<< HEAD
       <button nbButton size="medium" shape="semi-round">Calculate</button>
+=======
+      <button nbButton size="medium" shape="semi-round" class="calc-btn">Calculate</button>
+>>>>>>> 8e85377947a4a5bcd032c81273f0bc40e7a34124
     </nb-card-footer>
   </nb-card>
 </form>
-
-
 
 
 <!-- Dialogue ref -->
@@ -291,9 +311,19 @@
                   </div>
                   <div class="appointment-btn">
 
+<<<<<<< HEAD
                     <!-- TODO: Add a button below to Book and Appointment with Doctor -->
                     <button nbButton size="medium" shape="semi-round">Book Appointment Now</button>
                     <button nbButton size="medium" shape="semi-round">Test Button</button>
+=======
+                    <!-- TODO: Add a button below to Book an Appointment with Doctor -->
+                    <button nbButton size="medium" shape="semi-round">
+                      <a href="http://practo.com" style="color:white">
+                        Book an Appointment                        
+                      </a>
+                    </button>
+                   
+>>>>>>> 8e85377947a4a5bcd032c81273f0bc40e7a34124
                   </div>
                 </div>
               </div>
@@ -361,3 +391,9 @@
     </nb-card-footer>
   </nb-card>
 </ng-template>
+
+<!-- <button nbButton size="medium" shape="semi-round">
+  <a href="" style="color:white">
+    Book Appointment                        
+  </a>
+</button> -->
