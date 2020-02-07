@@ -11,19 +11,36 @@ import *  as  HeartAttackPredictor from '../../../assets/mock/heartAttackCounter
 @Injectable()
 export class ProfitBarAnimationChartService extends ProfitBarAnimationChartData {
 
-  private HeartAttackCounter: HeartAttackCounter[]=[];
+  private HeartAttackCounter: HeartAttackCounter[];
   private data: any;
 
   constructor(private http: HttpClient) {
     super();
-   
+    this.getDataForHeartAttackCounter().subscribe(
+      res => {
+        this.HeartAttackCounter = res;
+        this.data = {
+          firstLine: this.getDataForFirstLine(),
+          secondLine: this.getDataForSecondLine(),
+        };
+      });    
   }
   ngOnInit() {
    
   }
   getDataForHeartAttackCounter(): Observable<HeartAttackCounter[]> {
-   // return observableOf((HeartAttackPredictor as any).default); 
-   return this.http.get<HeartAttackCounter[]>(environment.heartiAttackCounterUrl);
+
+    //  this.HeartAttackCounter  = (HeartAttackPredictor as any).default;
+    //this.HeartAttackCounter= HeartAttackPredictor;
+    //this.HeartAttackCounter = DummyJSON;
+    return observableOf((HeartAttackPredictor as any).default);
+
+ 
+
+    // return this.http.get<HeartAttackCounter[]>("http://172.30.12.171:8083/intervalReport/weeklyreport/");
+   
+
+   
   }
 
   getDataForFirstLine(): number[] {   
@@ -31,12 +48,16 @@ export class ProfitBarAnimationChartService extends ProfitBarAnimationChartData 
     //Write the code to get predicted value from our object
     let firstLinedata: number[] = [];
     for (let i = 0; i < this.HeartAttackCounter.length; i++) {
-     //var a= HeartAttackCounter[0].cured;
-      firstLinedata.push(this.HeartAttackCounter[i].predicted);
+      firstLinedata[i] = this.HeartAttackCounter[i].predicted;
     }
 
     return firstLinedata;
-      
+    // return this.createEmptyArray(100)
+    //   .map((_, index) => {
+    //     const oneFifth = index / 5;
+
+    //     return (Math.sin(oneFifth) * (oneFifth - 10) + index / 6) * 5;
+    //   });
   }
 
   getDataForSecondLine(): number[] {
@@ -45,11 +66,16 @@ export class ProfitBarAnimationChartService extends ProfitBarAnimationChartData 
     let secondLinedata: number[] = [];
     for (let i = 0; i < this.HeartAttackCounter.length; i++) {
       
-      secondLinedata.push(this.HeartAttackCounter[i].cured);
+      secondLinedata[i] = this.HeartAttackCounter[i].cured;
     }
 
     return secondLinedata;
+    // return this.createEmptyArray(100)
+    //   .map((_, index) => {
+    //     const oneFifth = index / 5;
 
+    //     return (Math.cos(oneFifth) * (oneFifth - 10) + index / 6) * 5;
+    //   });
   }
 
   createEmptyArray(nPoints: number) {

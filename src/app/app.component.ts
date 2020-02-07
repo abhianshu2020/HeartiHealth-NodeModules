@@ -6,7 +6,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-app',
@@ -14,15 +13,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService, private seoService: SeoService, private router: Router) {
+  constructor(private analytics: AnalyticsService, private seoService: SeoService) {
   }
 
   ngOnInit(): void {
     this.analytics.trackPageViews();
     this.seoService.trackCanonicalChanges();
-
-    window.addEventListener("beforeunload", function (e) {
-      localStorage.setItem('isUserLoggedIn', "false");
-  });
   }
 }

@@ -10,7 +10,7 @@ import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { HealthPredictorComponent } from './health-predictor/health-predictor.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HealthPredictorResultComponent } from './health-predictor-result/health-predictor-result.component';
 
 
@@ -27,7 +27,6 @@ import { HealthPredictorResultComponent } from './health-predictor-result/health
     NbInputModule,
     NbRadioModule,
     NbTooltipModule,
-    FormsModule,
     ReactiveFormsModule,
     NbDialogModule.forRoot(),
   ],

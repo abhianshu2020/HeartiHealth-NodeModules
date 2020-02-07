@@ -10,6 +10,5 @@
 
 export const environment = {
   production: false,
-  heartiAttackCounterUrl : 'http://172.30.12.171:8083/api/intervalReport/weeklyreport/', 
-  livePredictionUrl :'http://172.30.12.171:8083/api/livePredictions/',
+  heartiHealthUrl : 'http://172.30.12.171:8083/intervalReport/weeklyreport/', 
 };

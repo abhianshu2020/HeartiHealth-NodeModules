@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HealthPredictorService } from '../../services/health-predictor/health-predictor.service';
 import { NbDialogService } from '@nebular/theme';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'ngx-health-predictor',
@@ -13,12 +14,27 @@ export class HealthPredictorComponent implements OnInit {
   checkoutForm; 
   submitted = false;
   isHeartOK: Boolean;
-
-
   @ViewChild('dialog', {static: false}) resultDialog;
 
+  loginDataOb: any;
+  loginData: any;
+
+
+
+  testLogin(){
+    this.loginDataOb =  this.httpClient
+    .get('http://ec2-52-201-229-245.compute-1.amazonaws.com:3000/api/User/abhishek.anshu%40pratian.com');
+
+    alert(this.loginData);
+
+    this.loginDataOb.subscribe((response: any) => {
+      alert(response);
+    });
+
+  }
+
   constructor(private dialogService: NbDialogService, private formBuilder: FormBuilder,
-     private healthPredictor: HealthPredictorService) {
+     private healthPredictor: HealthPredictorService,private httpClient: HttpClient) {
     this.checkoutForm = this.formBuilder.group({
       age: ['', Validators.required],
       sex: ['', Validators.required],
